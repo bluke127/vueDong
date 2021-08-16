@@ -5,12 +5,18 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 module.exports = {
   mode: "development",
   entry: "./src/main.js",
+  resolve:{
+    alias:{
+        "@": path.join(__dirname, "src"),
+      }
+  },
   module: {
     rules: [
       {
         test: /\.css$/i,
         use: ["style-loader", "css-loader"],
       },
+      
       {
         test: /\.js$/,
         /** .js로  끝나는 거 */
