@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="color" :style="{ backgroundColor: colorStyle }"></div>
+    
   </div>
 </template>
 

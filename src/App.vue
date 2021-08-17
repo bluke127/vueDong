@@ -8,10 +8,15 @@
 
 export default {
   data() {
+    return {
+    date: null}
   },
   mounted() {
   },
   methods: {
+    updateDate: function(d) {
+      this.date = d;
+    }
  
   },
 };
