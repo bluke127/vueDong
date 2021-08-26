@@ -17,7 +17,6 @@ export default {
     updateDate: function(d) {
       this.date = d;
     }
- 
   },
 };
 </script>

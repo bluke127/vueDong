@@ -1,5 +1,5 @@
 <template>
-  <div>생년월일 : <p>{{date}}</p> <Datepicker @update-date="updateDate" v-once></Datepicker></div>
+  <div>생년월일 : <p>{{date}}</p> <Datepicker @selected="updateDate" v-once></Datepicker></div>
 </template>
 
 <script>
@@ -17,10 +17,9 @@ export default {
     Datepicker
   },
    methods: {
-    // updateDate(d) {
-    //   alert()
-    //   this.date = d;
-    // }
+    updateDate(d) {
+      this.date = d;
+    }
   }
 }
 </script>

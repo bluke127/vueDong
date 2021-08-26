@@ -1,6 +1,7 @@
 import Vue from "vue"
 import App from "./App.vue"
 import router from "./router"
+import { store } from "./store/store"
 
 Vue.component('Datepicker', {
   template: '<input/>',
@@ -17,8 +18,9 @@ Vue.config.debug = true;
 Vue.config.devtools = true;
 new Vue({
   el: "#app",
-  render: (h) => h(App),
   router,
+  store,
+  render: (h) => h(App),
 });
 /**뷰 인스턴스 설정 객체는 el, data 뿐아니라 랜더 속성도 있다!, createElement 같은 돔 생성 함수를
  * 인자로 주입 받는 함수가 render 함수!
