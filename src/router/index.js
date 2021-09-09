@@ -3,7 +3,7 @@ import VueRouter from 'vue-router'
 
 import Join from "../../src/page/Join.vue"
 import Login from "../../src/page/Login.vue"
-import Content from "../../src/page/content.vue"
+import Main from "../../src/page/Main.vue"
 Vue.use(VueRouter)
 
 export default new VueRouter ({
@@ -20,9 +20,9 @@ export default new VueRouter ({
         component : Join,
         },
         {
-        path:"/content",
-        name : "Content",
-        component : Content,
+        path:"/main",
+        name : "Main",
+        component : Main,
         }
     ]
 })

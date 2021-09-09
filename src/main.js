@@ -3,17 +3,6 @@ import App from "./App.vue"
 import router from "./router"
 import { store } from "./store/store"
 
-Vue.component('Datepicker', {
-  template: '<input/>',
-  mounted: function() {
-    var self = this;
-    $(this.$el).datepicker({
-      dateFormat: "yy-mm-dd",
-      onSelect: function(d){self.$emit('update-date',d)}
-    });
-  },
-  beforeDestroy: function(){$(this.$el).datepicker('hide').datepicker('destroy')}
-});
 Vue.config.debug = true;
 Vue.config.devtools = true;
 new Vue({

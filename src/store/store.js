@@ -15,7 +15,6 @@ export const store = new Vuex.Store({
         }
     },
     getters:{
-        
         getIncrease(state){
             return state.num=state.num+3
         },

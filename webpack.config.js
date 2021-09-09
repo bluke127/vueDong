@@ -33,6 +33,32 @@ module.exports = {
         test: /\.vue$/,
         loader: "vue-loader",
       },
+        {
+          test: /\.(ttf|eot|svg|woff|woff2)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+          use: [{
+              loader: 'file-loader'
+          }]
+        },
+        {
+        	test: /.(sass|scss)$/,
+        	use: [
+        	{ loader: 'style-loader' },
+        	{ loader: 'css-loader' },
+        	{ loader: 'sass-loader' },
+        	]
+        },
+        {
+          test: /\.(png|jpg|gif)$/,
+          use: [
+            {
+              loader: 'file-loader',
+      name: '[name].[ext]',
+              options: {
+                esModule: false
+            }
+          },
+        ]
+      }
     ],
   },
   devServer: {
