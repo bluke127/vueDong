@@ -1,23 +1,18 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import Vue from "vue";
+import Vuex from "vuex";
 
 Vue.use(Vuex);
 export const store = new Vuex.Store({
-    state : {
-        num : 5
-    },
-    mutations : {
-        increase(state){
-            state.num++
-        },
-        decrease(state){
-            state.num--
-        }
-    },
-    getters:{
-        getIncrease(state){
-            return state.num=state.num+3
-        },
-    }
-});
+  state: {
+    checkPop: false,
+  },
+  mutations: {
+    SET_POP(state, flag) {
+      console.log(state, flag);
 
+      state.checkPop = flag;
+    },
+  },
+
+  getters: {},
+});

@@ -1,9 +1,11 @@
-export function getUser(data) {
-  return new Promise((resolve, reject) => {
-    setTimeout(
-      () => resolve({ name: data.name, age: data.age, color: data.color }),
-      1000
-    );
-    () => reject(alert("땡"));
-  });
-}
+export const userInfo = {
+  checkApi(reg, value) {
+    if (!reg.test(value) && value !== "") {
+      return "wrong";
+    } else if (!reg.test(value) && value === "") {
+      return "empty";
+    } else {
+      return true;
+    }
+  },
+};

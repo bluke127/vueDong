@@ -1,7 +1,8 @@
-import Vue from "vue"
-import App from "./App.vue"
-import router from "./router"
-import { store } from "./store/store"
+import Vue from "vue";
+import App from "./App.vue";
+import router from "./router";
+import { store } from "./store/store";
+import Vcalendar from "v-calendar";
 
 Vue.config.debug = true;
 Vue.config.devtools = true;

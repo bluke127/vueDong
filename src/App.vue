@@ -4,24 +4,25 @@
   </div>
 </template>
 <style scoped>
-  @import 'assets/css/init.css';
-  @import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
-  #app{font-family: 'Lato', sans-serif;}
+@import "assets/css/init.css";
+@import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
+#app {
+  font-family: "Lato", sans-serif;
+}
 </style>
 
 <script>
-
 export default {
   data() {
     return {
-    date: null}
+      date: null,
+    };
   },
-  mounted() {
-  },
+  mounted() {},
   methods: {
     updateDate: function(d) {
       this.date = d;
-    }
+    },
   },
 };
 </script>
