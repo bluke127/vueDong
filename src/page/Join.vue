@@ -47,14 +47,9 @@
             @input="updateValue"
             mode="single"
             :formats="formats"
+            :attributes="attributes"
+            ref="calendar"
           >
-            <!-- <b-field :type="inputState.type" slot-scope="props">
-              <b-input
-                type="text"
-                @change.native="props.updateValue($event.target.value)"
-              >
-              </b-input>
-            </b-field> -->
           </Vcalendar>
         </li>
       </ul>
@@ -67,8 +62,19 @@ import { mapState, mapMutations } from "vuex";
 import { userInfo } from "@/apis/user.js";
 import Vcalendar from "v-calendar/lib/components/date-picker.umd";
 export default {
-  data: function() {
+  data() {
     return {
+      attributes: [
+        { key: "today", highlight: true, content: "red", dates: new Date() },
+        {
+          dot: {
+            style: {
+              backgroundColor: "brown",
+            },
+            dates: [],
+          },
+        },
+      ],
       dateValue: "",
       id: {
         id: "",
@@ -130,12 +136,14 @@ export default {
   methods: {
     ...mapState(["checkPop"]),
     ...mapMutations(["CHECK_ID", "SET_POP"]),
+
     updateValue() {
       var moment = require("moment");
 
       this.dateValue = this.date.date;
       this.dateValue = moment(this.dateValue).format("yyyy-MM-DD");
-      console.log(this.dateValue);
+      console.log(this.dateValue, this.$refs.navPopover);
+      this.$refs.navPopover.display = "none";
       return this.dateValue;
     },
     checkId() {
@@ -203,5 +211,8 @@ export default {
       }
     }
   }
+}
+.vc-header {
+  background: red;
 }
 </style>
