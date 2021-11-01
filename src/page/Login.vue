@@ -16,7 +16,7 @@
       </div>
     </div>
     <button @click="login" class="login" :class="{ active: btnActiveFlag }">
-      로그인
+      로그인adfsf
     </button>
     <router-link to="/join" class="join">회원가입</router-link>
     <default-pop v-if="checkPop" :popSet="popSet" @close="close"></default-pop>
@@ -34,6 +34,7 @@
   position: absolute;
   top: 50%;
   left: 50%;
+  font-family: 'Raleway';
   transform: translate(-50%, -50%);
 }
 #title {
@@ -59,6 +60,7 @@ label {
   margin-right: 5%;
   font-size: 32px;
   vertical-align: middle;
+  font-family: 'Raleway';
 }
 input {
   display: inline-block;
@@ -122,9 +124,10 @@ export default {
       },
     };
   },
-  computed: {},
-  methods: {
+  computed: {
     ...mapState(['checkPop']),
+  },
+  methods: {
     ...mapMutations(['CHECK_ID', 'SET_POP']),
     close() {
       this.SET_POP(false);

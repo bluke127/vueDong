@@ -1,13 +1,14 @@
 <template>
   <div id="app">
-    <router-view :key="$route.fullPath" />
+    <router-view></router-view>
   </div>
 </template>
-<style scoped>
-@import "assets/css/init.css";
-@import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
+<style lang="scss">
+@import 'assets/style/init.scss';
 #app {
-  font-family: "Lato", sans-serif;
+  label {
+    font-family: 'Raleway', sans-serif;
+  }
 }
 </style>
 

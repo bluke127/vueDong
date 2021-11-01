@@ -7,7 +7,7 @@ module.exports = {
   entry: './src/main.js',
   resolve: {
     alias: {
-      // '@': path.join(__dirname, 'src'),
+      '@': path.join(__dirname, 'src'),
     },
   },
   module: {
@@ -60,9 +60,11 @@ module.exports = {
     ],
   },
   devServer: {
-    contentBase: path.join(__dirname, 'dist'),
+    // contentBase: path.join(__dirname, 'dist'),
     compress: true,
     port: 8005,
+    historyApiFallback: true,
+    overlay: true,
   },
   plugins: [
     new HtmlWebpackPlugin({
