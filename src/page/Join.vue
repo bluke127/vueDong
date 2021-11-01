@@ -10,30 +10,21 @@
           </div>
         </li>
         <li class="passLine">
-          <label>비밀번호</label
-          ><input type="text" @keyup="checkPass()" v-model="pass.passValue" />
+          <label>비밀번호</label><input type="text" @keyup="checkPass()" v-model="pass.passValue" />
           <div class="warnMsg">
             <span v-if="pass.errorFlag">{{ pass.errorMsg }}</span>
           </div>
         </li>
         <li class="passConfirmLine">
           <label>비밀번호 확인</label
-          ><input
-            type="text"
-            @keyup="checkPassConfirm()"
-            v-model="passConfirm.passConfirmValue"
-          />
+          ><input type="text" @keyup="checkPassConfirm()" v-model="passConfirm.passConfirmValue" />
           <div class="warnMsg">
             <span v-if="passConfirm.errorFlag">{{ passConfirm.errorMsg }}</span>
           </div>
         </li>
         <li class="reasonLine">
           <label>가입경로</label
-          ><input
-            type="text"
-            @keyup="checkPassConfirm()"
-            v-model="reason.reasonValue"
-          />
+          ><input type="text" @keyup="checkPassConfirm()" v-model="reason.reasonValue" />
           <div class="warnMsg">
             <span v-if="reason.errorFlag">{{ pass.errorMsg }}</span>
           </div>
@@ -58,60 +49,60 @@
 </template>
 
 <script>
-import { mapState, mapMutations } from "vuex";
-import { userInfo } from "@/apis/user.js";
-import Vcalendar from "v-calendar/lib/components/date-picker.umd";
+import { mapState, mapMutations } from 'vuex';
+import { userInfo } from '@/apis/user.js';
+import Vcalendar from 'v-calendar/lib/components/date-picker.umd';
 export default {
   data() {
     return {
       attributes: [
-        { key: "today", highlight: true, content: "red", dates: new Date() },
+        { key: 'today', highlight: true, content: 'red', dates: new Date() },
         {
           dot: {
             style: {
-              backgroundColor: "brown",
+              backgroundColor: 'brown',
             },
             dates: [],
           },
         },
       ],
-      dateValue: "",
+      dateValue: '',
       id: {
-        id: "",
-        idValue: "",
+        id: '',
+        idValue: '',
         errorFlag: false,
-        errorMsg: "",
+        errorMsg: '',
       },
       pass: {
-        pass: "",
-        passValue: "",
+        pass: '',
+        passValue: '',
         errorFlag: false,
-        errorMsg: "",
+        errorMsg: '',
       },
       passConfirm: {
-        passConfirm: "",
-        passConfirmValue: "",
+        passConfirm: '',
+        passConfirmValue: '',
         errorFlag: false,
-        errorMsg: "",
+        errorMsg: '',
       },
       reason: {
-        reason: "",
-        reasonValue: "",
+        reason: '',
+        reasonValue: '',
         errorFlag: false,
-        errorMsg: "",
+        errorMsg: '',
       },
       date: {
         date: new Date(),
         errorFlag: false,
-        errorMsg: "",
+        errorMsg: '',
       },
       formats: {
-        title: "MMMM YYYY",
-        weekdays: "W",
-        navMonths: "MMM",
-        input: ["L", "YYYY-MM-DD", "YYYY/MM/DD"],
-        dayPopover: "L",
-        data: ["L", "YYYY-MM-DD", "YYYY/MM/DD"],
+        title: 'MMMM YYYY',
+        weekdays: 'W',
+        navMonths: 'MMM',
+        input: ['L', 'YYYY-MM-DD', 'YYYY/MM/DD'],
+        dayPopover: 'L',
+        data: ['L', 'YYYY-MM-DD', 'YYYY/MM/DD'],
       },
     };
   },
@@ -119,13 +110,13 @@ export default {
     inputState() {
       if (!this.selectedValue) {
         return {
-          type: "is-danger",
-          message: "Date required.",
+          type: 'is-danger',
+          message: 'Date required.',
         };
       }
       return {
-        type: "is-primary",
-        message: "",
+        type: 'is-primary',
+        message: '',
       };
     },
   },
@@ -134,49 +125,49 @@ export default {
     Vcalendar,
   },
   methods: {
-    ...mapState(["checkPop"]),
-    ...mapMutations(["CHECK_ID", "SET_POP"]),
+    ...mapState(['checkPop']),
+    ...mapMutations(['CHECK_ID', 'SET_POP']),
 
     updateValue() {
-      var moment = require("moment");
+      var moment = require('moment');
 
       this.dateValue = this.date.date;
-      this.dateValue = moment(this.dateValue).format("yyyy-MM-DD");
+      this.dateValue = moment(this.dateValue).format('yyyy-MM-DD');
       console.log(this.dateValue, this.$refs.navPopover);
-      this.$refs.navPopover.display = "none";
+      this.$refs.navPopover.display = 'none';
       return this.dateValue;
     },
     checkId() {
       var idReg = /^[A-za-z]/g;
       const check = userInfo.checkApi(idReg, this.id.idValue);
-      if (check === "wrong") {
+      if (check === 'wrong') {
         this.id.errorFlag = true;
-        this.id.errorMsg = "시작을 영문으로 시작해주세요.";
+        this.id.errorMsg = '시작을 영문으로 시작해주세요.';
         return false;
-      } else if (check === "empty") {
+      } else if (check === 'empty') {
         this.id.errorFlag = true;
-        this.id.errorMsg = "아이디를 입력해주세요";
+        this.id.errorMsg = '아이디를 입력해주세요';
         return false;
       }
       this.id.errorFlag = false;
-      this.id.errorMsg = "";
+      this.id.errorMsg = '';
       return true;
     },
     checkPass() {
       var passReg = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d~!@#$%^&*()+|=]{8,20}$/;
       const check = userInfo.checkApi(passReg, this.pass.passValue);
-      if (check === "wrong") {
+      if (check === 'wrong') {
         this.pass.errorFlag = true;
         this.pass.errorMsg =
-          "최소 8 자 및 최대 10 자, 대문자 하나 이상, 소문자 하나, 숫자 하나 및 특수 문자 하나 이상으로 작성해주세요.";
+          '최소 8 자 및 최대 10 자, 대문자 하나 이상, 소문자 하나, 숫자 하나 및 특수 문자 하나 이상으로 작성해주세요.';
         return false;
-      } else if (check === "empty") {
+      } else if (check === 'empty') {
         this.pass.errorFlag = true;
-        this.pass.errorMsg = "비밀번호를 입력해주세요";
+        this.pass.errorMsg = '비밀번호를 입력해주세요';
         return false;
       }
       this.pass.errorFlag = false;
-      this.pass.errorMsg = "";
+      this.pass.errorMsg = '';
       this.btnActive(this.id.errorFlag, this.pass.errorFlag);
       return true;
     },

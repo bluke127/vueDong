@@ -9,7 +9,6 @@ export const store = new Vuex.Store({
   mutations: {
     SET_POP(state, flag) {
       console.log(state, flag);
-
       state.checkPop = flag;
     },
   },

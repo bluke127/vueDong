@@ -1,21 +1,15 @@
 <template>
   <div id="wrap">
     <div id="title">
-      Twitter<span
-        ><img :src="require('@/assets/image/logo.png')" alt="logo"
-      /></span>
+      Twitter<span><img :src="require('@/assets/image/logo.png')" alt="logo"/></span>
     </div>
     <div id="context">
-      <span
-        ><label>Login </label
-        ><input type="text" @keyup="checkId()" v-model="id.idValue"
-      /></span>
+      <span><label>Login </label><input type="text" @keyup="checkId()" v-model="id.idValue"/></span>
       <div class="warnMsg">
         <span v-if="id.errorFlag">{{ id.errorMsg }}</span>
       </div>
       <span
-        ><label>Password</label
-        ><input type="text" @keyup="checkPass()" v-model="pass.passValue"
+        ><label>Password</label><input type="text" @keyup="checkPass()" v-model="pass.passValue"
       /></span>
       <div class="warnMsg">
         <span v-if="pass.errorFlag">{{ pass.errorMsg }}</span>
@@ -25,11 +19,7 @@
       로그인
     </button>
     <router-link to="/join" class="join">회원가입</router-link>
-    <default-pop
-      v-if="$store.state.checkPop"
-      :popSet="popSet"
-      @close="close"
-    ></default-pop>
+    <default-pop v-if="checkPop" :popSet="popSet" @close="close"></default-pop>
   </div>
 </template>
 <style scoped>
@@ -103,53 +93,53 @@ input {
 </style>
 
 <script>
-import { mapState, mapMutations } from "vuex";
-import { userInfo } from "@/apis/user.js";
-import defaultPop from "@/components/defaultPop.vue";
+import { mapState, mapMutations } from 'vuex';
+import { userInfo } from '@/apis/user.js';
+import defaultPop from '@/components/defaultPop.vue';
 export default {
   components: { defaultPop },
   created() {},
   data() {
     return {
       id: {
-        id: "",
-        idValue: "",
+        id: '',
+        idValue: '',
         errorFlag: false,
-        errorMsg: "",
+        errorMsg: '',
       },
       pass: {
-        pass: "",
-        passValue: "",
+        pass: '',
+        passValue: '',
         errorFlag: false,
-        errorMsg: "",
+        errorMsg: '',
       },
       btnActiveFlag: false,
       popSet: {
-        title: "",
-        passage: "",
-        confirmMsg: "",
-        concelMsg: "",
+        title: '',
+        passage: '',
+        confirmMsg: '',
+        concelMsg: '',
       },
     };
   },
   computed: {},
   methods: {
-    ...mapState(["checkPop"]),
-    ...mapMutations(["CHECK_ID", "SET_POP"]),
+    ...mapState(['checkPop']),
+    ...mapMutations(['CHECK_ID', 'SET_POP']),
     close() {
       this.SET_POP(false);
     },
     login() {
       if (!this.btnActiveFlag) {
         this.SET_POP(true);
-        this.popSet.confirmMsg = "확인";
-        this.popSet.title = "알림";
+        this.popSet.confirmMsg = '확인';
+        this.popSet.title = '알림';
         if (this.id.errorMsg) {
           this.popSet.passage = this.id.errorMsg;
         } else if (this.pass.errorMsg) {
           this.popSet.passage = this.pass.errorMsg;
         } else if (!this.id.idValue && !this.pass.passValue) {
-          this.popSet.passage = "아이디를 입력해주세요.";
+          this.popSet.passage = '아이디를 입력해주세요.';
         }
       }
       this.id.id = this.id.idValue;
@@ -159,34 +149,34 @@ export default {
     checkId() {
       var idReg = /^[A-za-z]/g;
       const check = userInfo.checkApi(idReg, this.id.idValue);
-      if (check === "wrong") {
+      if (check === 'wrong') {
         this.id.errorFlag = true;
-        this.id.errorMsg = "시작을 영문으로 시작해주세요.";
+        this.id.errorMsg = '시작을 영문으로 시작해주세요.';
         return false;
-      } else if (check === "empty") {
+      } else if (check === 'empty') {
         this.id.errorFlag = true;
-        this.id.errorMsg = "아이디를 입력해주세요";
+        this.id.errorMsg = '아이디를 입력해주세요';
         return false;
       }
       this.id.errorFlag = false;
-      this.id.errorMsg = "";
+      this.id.errorMsg = '';
       return true;
     },
     checkPass() {
       var passReg = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d~!@#$%^&*()+|=]{8,20}$/;
       const check = userInfo.checkApi(passReg, this.pass.passValue);
-      if (check === "wrong") {
+      if (check === 'wrong') {
         this.pass.errorFlag = true;
         this.pass.errorMsg =
-          "최소 8 자 및 최대 10 자, 대문자 하나 이상, 소문자 하나, 숫자 하나 및 특수 문자 하나 이상으로 작성해주세요.";
+          '최소 8 자 및 최대 10 자, 대문자 하나 이상, 소문자 하나, 숫자 하나 및 특수 문자 하나 이상으로 작성해주세요.';
         return false;
-      } else if (check === "empty") {
+      } else if (check === 'empty') {
         this.pass.errorFlag = true;
-        this.pass.errorMsg = "비밀번호를 입력해주세요";
+        this.pass.errorMsg = '비밀번호를 입력해주세요';
         return false;
       }
       this.pass.errorFlag = false;
-      this.pass.errorMsg = "";
+      this.pass.errorMsg = '';
       this.btnActive(this.id.errorFlag, this.pass.errorFlag);
       return true;
     },
@@ -196,20 +186,6 @@ export default {
         this.btnActiveFlag = true;
       }
     },
-    // setIncrease(){
-    //   this.$store.commit('increase');
-    //   this.number0=this.$store.state.num
-    // },
-    // setdecrease(){
-    //   this.$store.commit('decrease');
-    //   this.number0=this.$store.state.num
-    // },
-  },
-  computed: {
-    // trippleIncrease(){
-    //   this.$store.getters.getIncrease;
-    //   this.number0=this.$store.state.num
-    // },
   },
 };
 </script>
