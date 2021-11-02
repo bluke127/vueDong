@@ -64,12 +64,5 @@ table {
   border-spacing: 0;
 }
 
-@font-face {
-  font-family: Raleway;
-  font-style: normal;
-  font-weight: normal;
-  font-display: swap;
-  src: url('~@/assets/style/fonts/Raleway.ttf') format('woff'),
-	url('~@/assets/style/fonts/Raleway.ttf') format('woff2')
-}
+
 /*# sourceMappingURL=init.css.map */

@@ -1,6 +1,7 @@
 const path = require('path');
 const { VueLoaderPlugin } = require('vue-loader');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   mode: 'development',
@@ -34,10 +35,25 @@ module.exports = {
         loader: 'vue-loader',
       },
       {
-        test: /\.(ttf|eot|svg|woff|woff2)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        test: /\.(ttf|eot|svg|woff|woff2)$/i,
         use: [
           {
             loader: 'file-loader',
+            options: {
+              name: '[name].[ext]?[hash]',
+              // publicPath: 'dist',
+            },
+          },
+        ],
+      },
+      {
+        test: /\.(ttf|eot|svg|woff|woff2)$/,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              name: '[name].[ext]?[hash]',
+            },
           },
         ],
       },
@@ -71,6 +87,9 @@ module.exports = {
       template: './src/index.html',
     }),
     new VueLoaderPlugin(),
+    new CopyWebpackPlugin({
+      patterns: [{ from: 'src/assets/style/fonts', to: 'src/assets/style/fonts' }],
+    }),
   ],
   output: {
     filename: 'main.js',

@@ -1,7 +1,7 @@
 <template>
   <div id="wrap">
     <div id="title">
-      Twitter<span><img :src="require('@/assets/image/logo.png')" alt="logo"/></span>
+      Twitter<span><img :src="require('@/assets/image/logo.png')" alt="logo" ref="logo"/></span>
     </div>
     <div id="context">
       <span><label>Login </label><input type="text" @keyup="checkId()" v-model="id.idValue"/></span>
@@ -16,13 +16,13 @@
       </div>
     </div>
     <button @click="login" class="login" :class="{ active: btnActiveFlag }">
-      로그인adfsf
+      로그인
     </button>
     <router-link to="/join" class="join">회원가입</router-link>
     <default-pop v-if="checkPop" :popSet="popSet" @close="close"></default-pop>
   </div>
 </template>
-<style scoped>
+<style lang="scss" scoped>
 #wrap {
   min-width: 200px;
   width: 40%;
@@ -34,7 +34,7 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  font-family: 'Raleway';
+  font-family: 'AppleSDGothicNeoM00';
   transform: translate(-50%, -50%);
 }
 #title {
@@ -56,7 +56,7 @@
 }
 label {
   display: inline-block;
-  width: 30%;
+  width: 15%;
   margin-right: 5%;
   font-size: 32px;
   vertical-align: middle;
@@ -67,20 +67,34 @@ input {
   width: 40%;
   font-size: 32px;
   vertical-align: middle;
+  border: none;
+  border-bottom: 2px solid #000;
+  background: transparent;
+  color: #fff;
 }
+/* input[type='text']:hover {
+  background: rgba(213 252 0 / 50%);
+} */
+
 #context span {
   display: block;
 }
 .warnMsg {
-  height: 30px;
-  line-height: 30px;
+  min-height: 7vh;
+  line-height: 7vh;
   text-align: left;
+  padding-top: 1vh;
   color: red;
+  font-weight: 900;
+  span {
+    line-height: 1;
+  }
 }
 .login {
   width: 50%;
   margin: 0 auto 30px;
   border-radius: 10px;
+  font-size: 24px;
   line-height: 60px;
   display: block;
   box-shadow: none;
@@ -88,6 +102,7 @@ input {
   color: honeydew;
   border: none;
   cursor: pointer;
+  font-family: 'AppleSDGothicNeoB00';
 }
 .login.active {
   background-color: salmon;
@@ -98,6 +113,7 @@ input {
 import { mapState, mapMutations } from 'vuex';
 import { userInfo } from '@/apis/user.js';
 import defaultPop from '@/components/defaultPop.vue';
+
 export default {
   components: { defaultPop },
   created() {},
@@ -147,6 +163,7 @@ export default {
       }
       this.id.id = this.id.idValue;
       this.pass.pass = this.pass.passValue;
+      this.$router.push({ name: 'Main' });
       // localStorage.setItem("userInfo") = this.id.id;
     },
     checkId() {

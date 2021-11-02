@@ -17,6 +17,7 @@ time, mark, audio, video {
 	font-size: 100%;
 	vertical-align: baseline;
   box-sizing: border-box;
+  font-family: 'AppleSDGothicNeoM00';
 }
  a {color: #fff; text-decoration: none; outline: none}
 
@@ -44,12 +45,4 @@ q:before, q:after {
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
-}
-
-@font-face {
-  font-family: Raleway;
-  font-style: normal;
-  font-weight: normal;
-  font-display: swap;
-  src: url('~@/assets/style/fonts/Raleway.ttf') format('woff'),url('~@/assets/style/fonts/Raleway.ttf') format('woff2')
 }

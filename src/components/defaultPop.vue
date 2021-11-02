@@ -8,11 +8,7 @@
         </div>
       </div>
       <div id="btnWrap">
-        <button
-          id="confirm"
-          :class="{ twin: popSet.concelMsg }"
-          @click="confirm()"
-        >
+        <button id="confirm" :class="{ twin: popSet.concelMsg }" @click="confirm()">
           {{ popSet.confirmMsg }}
         </button>
         <button
@@ -35,12 +31,12 @@ export default {
   },
   data() {
     return {
-      confirmMsg: "확인" || this.popSet.confirmMsg,
+      confirmMsg: '확인' || this.popSet.confirmMsg,
     };
   },
   methods: {
     close() {
-      this.$emit("close");
+      this.$emit('close');
     },
     confirm() {
       this.close();

@@ -3,12 +3,16 @@
     <router-view></router-view>
   </div>
 </template>
+<style>
+@import 'assets/style/fonts/stylesheet.css';
+</style>
 <style lang="scss">
 @import 'assets/style/init.scss';
 #app {
-  label {
-    font-family: 'Raleway', sans-serif;
-  }
+  font-family: NanumSquareB;
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
 }
 </style>
 
