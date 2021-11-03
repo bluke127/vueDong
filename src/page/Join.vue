@@ -30,8 +30,8 @@
           </div>
         </li>
         <li class="dateLine">
-          생년월일 :
-          <p>{{ dateValue }}</p>
+          <label>생년월일</label>
+          <input type="text" @click="showCalendar()" readonly />{{ dateValue }}
           <Vcalendar
             style="z-index:2; position:absolute"
             v-model="date.date"
@@ -124,6 +124,9 @@ export default {
   components: {
     Vcalendar,
   },
+  mounted() {
+    this.showCalendar();
+  },
   methods: {
     ...mapState(['checkPop']),
     ...mapMutations(['CHECK_ID', 'SET_POP']),
@@ -170,6 +173,20 @@ export default {
       this.pass.errorMsg = '';
       this.btnActive(this.id.errorFlag, this.pass.errorFlag);
       return true;
+    },
+    noneC() {
+      this.$refs.calendar.$el.style.display = 'none';
+    },
+    showCalendar() {
+      console.log(this.$refs.calendar.$el);
+      console.log(this.$refs.calendar.$el.style.display);
+      console.log(this);
+      (function() {
+        this.$refs.calendar.$el.style.display = 'none';
+      })();
+      return this.$refs.calendar.$el.style.display === 'none'
+        ? (this.$refs.calendar.$el.style.display = 'block')
+        : (this.$refs.calendar.$el.style.display = 'none');
     },
     updateDate(d) {
       this.date = d;
